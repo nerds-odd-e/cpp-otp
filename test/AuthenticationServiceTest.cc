@@ -7,18 +7,31 @@
 using ::testing::NiceMock;
 using ::testing::Return;
 
-namespace {
+class AuthenticationServiceTest : public testing::Test {
+protected:
+    NiceMock<StubProfileDao> stubProfileDao;
+    NiceMock<StubRsaTokenDao> stubRsaTokenDao;
+    AuthenticationService target = AuthenticationService(stubProfileDao, stubRsaTokenDao);
 
-    TEST(AuthenticationService, IsValid) {
-        NiceMock<StubProfileDao> stubProfileDao;
-        ON_CALL(stubProfileDao, getPassword("joey")).WillByDefault(Return("91"));
-        NiceMock<StubRsaTokenDao> stubRsaTokenDao;
-        ON_CALL(stubRsaTokenDao, getRandom("joey")).WillByDefault(Return("000000"));
-        AuthenticationService target(stubProfileDao, stubRsaTokenDao);
-
-        bool actual = target.isValid("joey", "91000000");
-
-        ASSERT_TRUE(actual);
+    void givenPassword(string userName, string password) {
+        ON_CALL(stubProfileDao, getPassword(userName)).WillByDefault(Return(password));
     }
 
+    void givenToken(string userName, string token) {
+        ON_CALL(stubRsaTokenDao, getRandom(userName)).WillByDefault(Return(token));
+    }
+};
+
+TEST_F(AuthenticationServiceTest, IsValid) {
+    givenPassword("joey", "91");
+    givenToken("joey", "000000");
+
+    ASSERT_TRUE(target.isValid("joey", "91000000"));
+}
+
+TEST_F(AuthenticationServiceTest, IsNotValid) {
+    givenPassword("joey", "91");
+    givenToken("joey", "000000");
+
+    ASSERT_FALSE(target.isValid("joey", "wrong password"));
 }
