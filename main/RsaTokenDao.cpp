@@ -5,7 +5,7 @@
 
 using namespace std;
 
-std::string RsaTokenDao::getRandom(const std::string userName) {
+string RsaTokenDao::getRandom(const string userName) {
     srand((unsigned)time(nullptr));
     ostringstream oss;
     oss << setw(6) << setfill('0') << rand() % 1000000;

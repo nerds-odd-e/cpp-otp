@@ -3,10 +3,12 @@
 
 #include <string>
 
+using namespace std;
+
 class ProfileDao {
 
 public:
-    virtual std::string getPassword(const std::string userName);
+    virtual string getPassword(string userName);
 };
 
 #endif //CPP_OTP_PROFILEDAO_H

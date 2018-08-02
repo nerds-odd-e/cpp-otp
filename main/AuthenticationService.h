@@ -5,12 +5,14 @@
 #include "ProfileDao.h"
 #include "RsaTokenDao.h"
 
+using namespace std;
+
 class AuthenticationService {
 
 public:
     AuthenticationService(ProfileDao &profileDao, RsaTokenDao &rsaTokenDao);
 
-    bool isValid(const std::string userName, const std::string password);
+    bool isValid(string userName, string password);
 
 private:
     ProfileDao& profileDao;

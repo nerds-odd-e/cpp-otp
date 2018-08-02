@@ -1,6 +1,8 @@
 #include "ProfileDao.h"
 #include "Context.h"
 
-std::string ProfileDao::getPassword(const std::string userName) {
+using namespace std;
+
+string ProfileDao::getPassword(const string userName) {
     return Context::getPassword(userName);
 }

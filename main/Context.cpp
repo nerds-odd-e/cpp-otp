@@ -1,7 +1,8 @@
 #include "Context.h"
-#include <map>
 
-std::map<std::string, std::string> Context::profiles;
+using namespace std;
+
+map<string, string> Context::profiles;
 
 Context::Context() {
     profiles = {
@@ -10,6 +11,6 @@ Context::Context() {
     };
 }
 
-std::string Context::getPassword(const std::string userName) {
+string Context::getPassword(const string userName) {
     return profiles[userName];
 }

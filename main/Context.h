@@ -4,14 +4,16 @@
 #include <string>
 #include <map>
 
+using namespace std;
+
 class Context {
 
 public:
     Context();
 
-    static std::string getPassword(const std::string userName);
+    static string getPassword(string userName);
 
-    static std::map<std::string, std::string> profiles;
+    static map<string, string> profiles;
 
 };
 

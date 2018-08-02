@@ -5,15 +5,15 @@
 #include <string>
 #include <iostream>
 #include "AuthenticationService.h"
-#include "ProfileDao.h"
-#include "RsaTokenDao.h"
+
+using namespace std;
 
 AuthenticationService::AuthenticationService(ProfileDao &profileDao, RsaTokenDao &rsaTokenDao)
         : profileDao(profileDao), rsaTokenDao(rsaTokenDao) {
 
 }
 
-bool AuthenticationService::isValid(const std::string userName, const std::string password) {
+bool AuthenticationService::isValid(const string userName, const string password) {
     // 根據 account 取得自訂密碼
     auto passwordFromDao = profileDao.getPassword(userName);
 

@@ -3,10 +3,12 @@
 
 #include <string>
 
+using namespace std;
+
 class RsaTokenDao {
 
 public:
-    virtual std::string getRandom(const std::string userName);
+    virtual string getRandom(string userName);
 };
 
 #endif //CPP_OTP_RSATOKENDAO_H
