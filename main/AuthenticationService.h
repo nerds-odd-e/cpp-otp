@@ -19,5 +19,14 @@ private:
     RsaTokenDao& rsaTokenDao;
 };
 
+class ConcreteAuthenticationService : public AuthenticationService {
+public:
+    ConcreteAuthenticationService() : AuthenticationService(profileDao, rsaTokenDao) { }
+
+private:
+    ProfileDao profileDao;
+    RsaTokenDao rsaTokenDao;
+};
+
 
 #endif //CPP_OTP_AUTHENTICATIONSERVICE_H

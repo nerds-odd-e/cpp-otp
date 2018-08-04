@@ -35,3 +35,9 @@ TEST_F(AuthenticationServiceTest, IsNotValid) {
 
     ASSERT_FALSE(target.isValid("joey", "wrong password"));
 }
+
+TEST_F(AuthenticationServiceTest, NormalUsage) {
+    ConcreteAuthenticationService target;
+
+    ASSERT_FALSE(target.isValid("joey", "91264206"));
+}
