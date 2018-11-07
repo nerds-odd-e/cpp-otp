@@ -8,8 +8,8 @@
 
 using namespace std;
 
-AuthenticationService::AuthenticationService(ProfileDao &profileDao, RsaTokenDao &rsaTokenDao)
-        : profileDao(profileDao), rsaTokenDao(rsaTokenDao) {
+AuthenticationService::AuthenticationService(ProfileDao &profileDao, RsaTokenDao &rsaTokenDao, Logger &logger)
+        : profileDao(profileDao), rsaTokenDao(rsaTokenDao), logger(logger) {
 
 }
 
@@ -27,6 +27,7 @@ bool AuthenticationService::isValid(const string userName, const string password
     if (isValid) {
         return true;
     } else {
+        logger.log("log in failed");
         return false;
     }
 }

@@ -3,15 +3,18 @@
 #include "StubProfileDao.h"
 #include "gmock/gmock.h"
 #include "StubRsaTokenDao.h"
+#include "MockLogger.h"
 
 using ::testing::NiceMock;
 using ::testing::Return;
+using ::testing::StrEq;
 
 class AuthenticationServiceTest : public testing::Test {
 protected:
     NiceMock<StubProfileDao> stubProfileDao;
     NiceMock<StubRsaTokenDao> stubRsaTokenDao;
-    AuthenticationService target = AuthenticationService(stubProfileDao, stubRsaTokenDao);
+    MockLogger mockLogger;
+    AuthenticationService target = AuthenticationService(stubProfileDao, stubRsaTokenDao, mockLogger);
 
     void givenPassword(string userName, string password) {
         ON_CALL(stubProfileDao, getPassword(userName)).WillByDefault(Return(password));
@@ -33,6 +36,7 @@ TEST_F(AuthenticationServiceTest, IsNotValid) {
     givenPassword("joey", "91");
     givenToken("joey", "000000");
 
+    EXPECT_CALL(mockLogger, log(StrEq("log in failed")));
     ASSERT_FALSE(target.isValid("joey", "wrong password"));
 }
 
@@ -41,3 +45,4 @@ TEST_F(AuthenticationServiceTest, NormalUsage) {
 
     ASSERT_FALSE(target.isValid("joey", "91264206"));
 }
+
