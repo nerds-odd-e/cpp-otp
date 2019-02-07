@@ -2,4 +2,4 @@ set(Main_SRCS main.cpp AuthenticationService.cpp AuthenticationService.h Profile
 
 add_library(core ${Main_SRCS})
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
-target_link_libraries(${CMAKE_PROJECT_NAME} core)
+target_link_libraries(${CMAKE_PROJECT_NAME} core fruit)

@@ -14,7 +14,7 @@ protected:
     NiceMock<StubProfileDao> stubProfileDao;
     NiceMock<StubRsaTokenDao> stubRsaTokenDao;
     MockLogger mockLogger;
-    AuthenticationService target = AuthenticationService(stubProfileDao, stubRsaTokenDao, mockLogger);
+    AuthenticationService target = AuthenticationService(&stubProfileDao, &stubRsaTokenDao, &mockLogger);
 
     void givenPassword(string userName, string password) {
         ON_CALL(stubProfileDao, getPassword(userName)).WillByDefault(Return(password));

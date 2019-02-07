@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class StubProfileDao : public ProfileDao {
+class StubProfileDao : public IProfileDao {
 
 public:
     MOCK_METHOD1(getPassword, string(string));

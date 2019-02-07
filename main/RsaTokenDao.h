@@ -2,12 +2,20 @@
 #define CPP_OTP_RSATOKENDAO_H
 
 #include <string>
+#include <fruit/fruit.h>
 
 using namespace std;
 
-class RsaTokenDao {
+class IRsaTokenDao {
+public:
+    virtual string getRandom(string userName) = 0;
+};
+
+class RsaTokenDao : public IRsaTokenDao {
 
 public:
+    INJECT(RsaTokenDao()) = default;
+
     virtual string getRandom(string userName);
 };
 

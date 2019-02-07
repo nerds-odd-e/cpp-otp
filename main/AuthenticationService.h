@@ -5,25 +5,31 @@
 #include "ProfileDao.h"
 #include "RsaTokenDao.h"
 #include "Logger.h"
+#include <fruit/fruit.h>
 
 using namespace std;
 
-class AuthenticationService {
+class IAuthenticationService {
+public:
+    virtual bool isValid(string userName, string password) = 0;
+};
+
+class AuthenticationService : public IAuthenticationService {
 
 public:
-    AuthenticationService(ProfileDao &profileDao, RsaTokenDao &rsaTokenDao, Logger &logger);
+    INJECT(AuthenticationService(IProfileDao* profileDao, IRsaTokenDao* rsaTokenDao, ILogger* logger));
 
-    bool isValid(string userName, string password);
+    virtual bool isValid(string userName, string password);
 
 private:
-    ProfileDao& profileDao;
-    RsaTokenDao& rsaTokenDao;
-    Logger& logger;
+    IProfileDao* profileDao;
+    IRsaTokenDao* rsaTokenDao;
+    ILogger* logger;
 };
 
 class ConcreteAuthenticationService : public AuthenticationService {
 public:
-    ConcreteAuthenticationService() : AuthenticationService(profileDao, rsaTokenDao, logger) { }
+    ConcreteAuthenticationService() : AuthenticationService(&profileDao, &rsaTokenDao, &logger) { }
 
 private:
     ProfileDao profileDao;
