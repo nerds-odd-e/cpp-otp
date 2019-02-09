@@ -10,12 +10,8 @@ using ::testing::NiceMock;
 using ::testing::Return;
 using ::testing::StrEq;
 
-fruit::Component<IAuthenticationService> getAuthenticationServiceComponent() {
-    return fruit::createComponent()
-            .bind<IRsaTokenDao, RsaTokenDao>()
-            .bind<ILogger, Logger>()
-            .bind<IProfileDao, ProfileDao>()
-            .bind<IAuthenticationService, AuthenticationService>();
+fruit::Component<AuthenticationService> getAuthenticationServiceComponent() {
+    return fruit::createComponent();
 }
 
 class AuthenticationServiceTest : public testing::Test {
@@ -57,8 +53,8 @@ TEST_F(AuthenticationServiceTest, NormalUsage) {
 }
 
 TEST_F(AuthenticationServiceTest, DI) {
-    fruit::Injector<IAuthenticationService> injector(getAuthenticationServiceComponent);
-    IAuthenticationService *authenticationService(injector);
+    fruit::Injector<AuthenticationService> injector(getAuthenticationServiceComponent);
+    AuthenticationService *authenticationService(injector);
 
     ASSERT_FALSE(authenticationService->isValid("joey", "91264206"));
 }

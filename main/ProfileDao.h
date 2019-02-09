@@ -6,12 +6,7 @@
 
 using namespace std;
 
-class IProfileDao {
-public:
-    virtual string getPassword(string userName) = 0;
-};
-
-class ProfileDao : public IProfileDao {
+class ProfileDao {
 
 public:
     INJECT(ProfileDao()) = default;

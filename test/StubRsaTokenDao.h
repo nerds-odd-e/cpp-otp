@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class StubRsaTokenDao : public IRsaTokenDao {
+class StubRsaTokenDao : public RsaTokenDao {
 
 public:
     MOCK_METHOD1(getRandom, string(string));

@@ -2,18 +2,14 @@
 #include <fruit/fruit.h>
 #include "AuthenticationService.h"
 
-fruit::Component<IAuthenticationService> getAuthenticationServiceComponent() {
-    return fruit::createComponent()
-            .bind<IRsaTokenDao, RsaTokenDao>()
-            .bind<ILogger, Logger>()
-            .bind<IProfileDao, ProfileDao>()
-            .bind<IAuthenticationService, AuthenticationService>();
+fruit::Component<AuthenticationService> getAuthenticationServiceComponent() {
+    return fruit::createComponent();
 }
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
-    fruit::Injector<IAuthenticationService> injector(getAuthenticationServiceComponent);
-    IAuthenticationService *authenticationService = injector.get<IAuthenticationService *>();
+    fruit::Injector<AuthenticationService> injector(getAuthenticationServiceComponent);
+    AuthenticationService *authenticationService = injector.get<AuthenticationService *>();
     std::cout << authenticationService->isValid("joey", "91000000") << std::endl;
     return 0;
 }

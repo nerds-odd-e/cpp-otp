@@ -8,7 +8,7 @@
 
 using namespace std;
 
-AuthenticationService::AuthenticationService(IProfileDao * profileDao, IRsaTokenDao* rsaTokenDao, ILogger* logger)
+AuthenticationService::AuthenticationService(ProfileDao * profileDao, RsaTokenDao* rsaTokenDao, Logger* logger)
         : profileDao(profileDao), rsaTokenDao(rsaTokenDao), logger(logger) {
 
 }

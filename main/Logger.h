@@ -6,12 +6,7 @@
 
 using namespace std;
 
-class ILogger {
-public:
-    virtual void log(string message) = 0;
-};
-
-class Logger : public ILogger {
+class Logger {
 
 public:
     INJECT(Logger()) = default;

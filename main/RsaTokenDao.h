@@ -6,12 +6,7 @@
 
 using namespace std;
 
-class IRsaTokenDao {
-public:
-    virtual string getRandom(string userName) = 0;
-};
-
-class RsaTokenDao : public IRsaTokenDao {
+class RsaTokenDao {
 
 public:
     INJECT(RsaTokenDao()) = default;

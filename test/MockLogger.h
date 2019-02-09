@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class MockLogger : public ILogger {
+class MockLogger : public Logger {
 
 public:
     MOCK_METHOD1(log, void(string));
