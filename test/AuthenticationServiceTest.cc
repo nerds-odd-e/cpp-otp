@@ -19,7 +19,7 @@ protected:
     NiceMock<StubProfileDao> stubProfileDao;
     NiceMock<StubRsaTokenDao> stubRsaTokenDao;
     MockLogger mockLogger;
-    AuthenticationService target = AuthenticationService(&stubProfileDao, &stubRsaTokenDao, &mockLogger);
+    AuthenticationService target = AuthenticationService(stubProfileDao, stubRsaTokenDao, mockLogger);
 
     void givenPassword(string userName, string password) {
         ON_CALL(stubProfileDao, getPassword(userName)).WillByDefault(Return(password));
@@ -54,8 +54,8 @@ TEST_F(AuthenticationServiceTest, NormalUsage) {
 
 TEST_F(AuthenticationServiceTest, DI) {
     fruit::Injector<AuthenticationService> injector(getAuthenticationServiceComponent);
-    AuthenticationService *authenticationService(injector);
+    AuthenticationService authenticationService(injector);
 
-    ASSERT_FALSE(authenticationService->isValid("joey", "91264206"));
+    ASSERT_FALSE(authenticationService.isValid("joey", "91264206"));
 }
 

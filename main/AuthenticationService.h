@@ -12,19 +12,19 @@ using namespace std;
 class AuthenticationService {
 
 public:
-    INJECT(AuthenticationService(ProfileDao* profileDao, RsaTokenDao* rsaTokenDao, Logger* logger));
+    INJECT(AuthenticationService(ProfileDao& profileDao, RsaTokenDao& rsaTokenDao, Logger& logger));
 
     virtual bool isValid(string userName, string password);
 
 private:
-    ProfileDao* profileDao;
-    RsaTokenDao* rsaTokenDao;
-    Logger* logger;
+    ProfileDao& profileDao;
+    RsaTokenDao& rsaTokenDao;
+    Logger& logger;
 };
 
 class ConcreteAuthenticationService : public AuthenticationService {
 public:
-    ConcreteAuthenticationService() : AuthenticationService(&profileDao, &rsaTokenDao, &logger) { }
+    ConcreteAuthenticationService() : AuthenticationService(profileDao, rsaTokenDao, logger) { }
 
 private:
     ProfileDao profileDao;

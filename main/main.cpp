@@ -9,8 +9,8 @@ fruit::Component<AuthenticationService> getAuthenticationServiceComponent() {
 int main() {
     std::cout << "Hello, World!" << std::endl;
     fruit::Injector<AuthenticationService> injector(getAuthenticationServiceComponent);
-    AuthenticationService *authenticationService = injector.get<AuthenticationService *>();
-    std::cout << authenticationService->isValid("joey", "91000000") << std::endl;
+    AuthenticationService authenticationService(injector);
+    std::cout << authenticationService.isValid("joey", "91000000") << std::endl;
     return 0;
 }
 
