@@ -13,13 +13,23 @@ using namespace std;
 class NowString {
 
 public:
-    explicit NowString(TimeProvider &timeProvider);
+    explicit NowString(TimeProvider& timeProvider);
 
     string get();
 
 private:
-    TimeProvider &timeProvider;
+    TimeProvider& timeProvider;
 };
 
+class NowStringFactory {
+private:
+    TimeProvider timeProvider;
+
+public:
+    NowString createNowString();
+};
+
+NowString createNowString();
 
 #endif //CPP_OTP_NOWSTRING_H
+

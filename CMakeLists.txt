@@ -43,7 +43,7 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googlefruit-src
 include_directories("${CMAKE_BINARY_DIR}/googlefruit-src/include")
 include_directories("${CMAKE_BINARY_DIR}/googlefruit-build/include")
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(main)
 add_subdirectory(test)

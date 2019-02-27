@@ -14,7 +14,7 @@ using ::testing::Return;
 class NowStringTest: public testing::Test {
 protected:
     NiceMock<StubTimeProvider> stubTimeProvider;
-    NowString nowString = NowString(stubTimeProvider);
+    NowString nowString = NowString{stubTimeProvider};
 
     void givenCurrentTime(string time){
         struct tm tm;
