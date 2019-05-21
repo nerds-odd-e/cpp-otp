@@ -12,6 +12,7 @@ using namespace std;
 class Outbox {
 
 public:
+    virtual ~Outbox() = default;
     virtual void send(string receiver, string title, string content);
 
 };

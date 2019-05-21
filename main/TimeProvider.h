@@ -8,6 +8,7 @@
 
 class TimeProvider {
 public:
+    virtual ~TimeProvider() = default;
     virtual time_t now();
 };
 

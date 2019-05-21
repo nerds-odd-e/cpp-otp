@@ -13,12 +13,14 @@ using namespace std;
 class NowString {
 
 public:
-    explicit NowString(TimeProvider& timeProvider);
+//    explicit NowString(TimeProvider& timeProvider);
+    explicit NowString(std::unique_ptr<TimeProvider> timeProvider_ptr);
 
     string get();
 
 private:
-    TimeProvider& timeProvider;
+//    TimeProvider& timeProvider;
+    std::unique_ptr<TimeProvider> timeProvider_ptr;
 };
 
 class NowStringFactory {

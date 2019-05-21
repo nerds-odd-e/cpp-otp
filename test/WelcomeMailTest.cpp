@@ -10,12 +10,14 @@
 using ::testing::StrEq;
 
 class WelcomeMailTest : public testing::Test {
-protected:
-    MockOutbox mockOutbox;
-    WelcomeMail mail = WelcomeMail(mockOutbox);
+//protected:
+//    std::unique_ptr<MockOutbox> mockOutbox = std::make_unique<MockOutbox>();
+//    WelcomeMail mail = WelcomeMail(std::move(mockOutbox));
 };
 
 TEST_F(WelcomeMailTest, Send){
-    EXPECT_CALL(mockOutbox, send(StrEq("new@member.com"), StrEq("Welcome"), StrEq("Welcome to join us.")));
+    std::unique_ptr<MockOutbox> mockOutbox = std::make_unique<MockOutbox>();
+    EXPECT_CALL(*mockOutbox, send(StrEq("new@member.com"), StrEq("Welcome"), StrEq("Welcome to join us.")));
+    WelcomeMail mail = WelcomeMail(std::move(mockOutbox));
     mail.send();
 }

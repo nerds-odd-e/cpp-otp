@@ -11,12 +11,14 @@
 class WelcomeMail {
 
 public:
-    WelcomeMail(Outbox &outbox);
+//    WelcomeMail(Outbox &outbox);
+    WelcomeMail(std::unique_ptr<Outbox> outbox_ptr);
 
     void send();
 
 private:
-    Outbox &outbox;
+//    Outbox &outbox;
+    std::unique_ptr<Outbox> outbox_ptr;
 };
 
 
