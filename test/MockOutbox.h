@@ -10,6 +10,6 @@
 
 class MockOutbox : public Outbox {
 public:
-    MOCK_METHOD3(send, void(string, string, string));
+  MOCK_CONST_METHOD4(send, void(string, string, string, const Mail&));
 };
 #endif //CPP_OTP_MOCKOUTBOX_H

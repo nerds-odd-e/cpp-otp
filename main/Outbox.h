@@ -9,11 +9,17 @@
 
 using namespace std;
 
+class Mail
+{
+ public:
+  string to;
+};
+
 class Outbox {
 
 public:
     virtual ~Outbox() = default;
-    virtual void send(string receiver, string title, string content);
+    virtual void send(string receiver, string title, string content, const Mail& mail) const;
 
 };
 

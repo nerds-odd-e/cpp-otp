@@ -4,6 +4,6 @@
 
 #include "Outbox.h"
 
-void Outbox::send(string receiver, string title, string content) {
+void Outbox::send(string receiver, string title, string content, const Mail& mail) const {
 
 }

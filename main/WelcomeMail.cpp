@@ -9,10 +9,16 @@
 //}
 
 void WelcomeMail::send() {
-    outbox_ptr->send("new@member.com", "Welcome", "Welcome to join us.");
+  Mail mail;
+  mail.to = "new@member.com";
+  outbox.send("new@member.com", "Welcome", "Welcome to join us.", mail);
+}
+WelcomeMail::WelcomeMail(Outbox &outbox): outbox(outbox) {
+
 }
 
-WelcomeMail::WelcomeMail(std::unique_ptr<Outbox> outbox_ptr): outbox_ptr(std::move(outbox_ptr)) {
+//WelcomeMail::WelcomeMail(std::unique_ptr<Outbox> outbox_ptr): outbox_ptr(std::move(outbox_ptr)) {
 
-}
+//}
 
+//ConcreteWelcomeMail::ConcreteWelcomeMail(): WelcomeMail(outbox) {}

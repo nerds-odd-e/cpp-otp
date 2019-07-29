@@ -16,8 +16,10 @@ class WelcomeMailTest : public testing::Test {
 };
 
 TEST_F(WelcomeMailTest, Send){
-    std::unique_ptr<MockOutbox> mockOutbox = std::make_unique<MockOutbox>();
-    EXPECT_CALL(*mockOutbox, send(StrEq("new@member.com"), StrEq("Welcome"), StrEq("Welcome to join us.")));
-    WelcomeMail mail = WelcomeMail(std::move(mockOutbox));
+    MockOutbox mockOutbox;
+    Mail mailSent;
+    EXPECT_CALL(mockOutbox, send(StrEq("new@member.com"), StrEq("Welcome"), StrEq("Welcome to join us."), testing::_)).WillOnce(testing::SaveArg<3>(&mailSent));
+    WelcomeMail mail = WelcomeMail(mockOutbox);
     mail.send();
+    EXPECT_EQ("new@member.com", mailSent.to);
 }

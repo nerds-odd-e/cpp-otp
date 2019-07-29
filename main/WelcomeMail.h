@@ -11,15 +11,22 @@
 class WelcomeMail {
 
 public:
-//    WelcomeMail(Outbox &outbox);
-    WelcomeMail(std::unique_ptr<Outbox> outbox_ptr);
+    explicit WelcomeMail(Outbox& outbox);
+//    WelcomeMail(std::unique_ptr<Outbox> outbox_ptr);
 
     void send();
 
 private:
-//    Outbox &outbox;
-    std::unique_ptr<Outbox> outbox_ptr;
+    const Outbox& outbox;
+//    std::unique_ptr<Outbox> outbox_ptr;
 };
+
+//class ConcreteWelcomeMail: public WelcomeMail {
+// public:
+//  ConcreteWelcomeMail();
+// private:
+//  Outbox outbox;
+//};
 
 
 #endif //CPP_OTP_WELCOMEMAIL_H

@@ -1,4 +1,4 @@
-set(Main_SRCS main.cpp AuthenticationService.cpp AuthenticationService.h ProfileDao.cpp ProfileDao.h RsaTokenDao.cpp RsaTokenDao.h Context.cpp Context.h Logger.h Logger.cpp NowString.cpp NowString.h TimeProvider.cpp TimeProvider.h WelcomeMail.cpp WelcomeMail.h Outbox.cpp Outbox.h)
+set(Main_SRCS main.cpp AuthenticationService.cpp AuthenticationService.h ProfileDao.cpp ProfileDao.h RsaTokenDao.cpp RsaTokenDao.h Context.cpp Context.h Logger.h Logger.cpp NowString.cpp NowString.h TimeProvider.cpp TimeProvider.h WelcomeMail.cpp WelcomeMail.h Outbox.cpp Outbox.h life_cycle.cpp life_cycle.h)
 
 add_library(core ${Main_SRCS})
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
