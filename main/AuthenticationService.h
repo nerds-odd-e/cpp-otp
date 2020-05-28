@@ -9,6 +9,11 @@
 
 using namespace std;
 
+class SimpleServiceWithLocalVar {
+public:
+    void doSomething();
+};
+
 class AuthenticationService {
 
 public:

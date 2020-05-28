@@ -31,3 +31,8 @@ bool AuthenticationService::isValid(const string userName, const string password
         return false;
     }
 }
+
+void SimpleServiceWithLocalVar::doSomething() {
+    Logger logger;
+    logger.log("I'm a local var");
+}
