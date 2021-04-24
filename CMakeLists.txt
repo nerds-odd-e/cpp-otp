@@ -21,8 +21,8 @@ execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
 if(result)
     message(FATAL_ERROR "CMake step for googlefruit failed: ${result}")
 endif()
-set(CMAKE_BUILD_TYPE Release)
-set(FRUIT_USES_BOOST False)
+
+set(FRUIT_USES_BOOST false)
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
         RESULT_VARIABLE result
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googlefruit-download )
